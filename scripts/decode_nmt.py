@@ -55,9 +55,9 @@ def main():
 
     # Model configuration
     vocab_size = len(tokenizer.vocab)
-    num_layers = 6
+    num_layers = 4
     num_heads = 8
-    embedding_dim = 512
+    embedding_dim = 256
     ffn_hidden_dim = 4 * embedding_dim
     qk_length = embedding_dim // num_heads
     value_length = embedding_dim // num_heads
@@ -82,9 +82,8 @@ def main():
     # Load the trained model weights
     model_path = "fr_en_euro_latest.pt"
     try:
-        model.load_state_dict(
-            torch.load(model_path, map_location=device, weights_only=True)["model"]
-        )
+        checkpoint = torch.load(model_path, map_location=device)
+        model.load_state_dict(checkpoint["model"])
     except FileNotFoundError:
         print(f"Error: Model file not found at '{model_path}'")
         print("Please make sure the model file exists and the path is correct.")

@@ -73,7 +73,7 @@ def main():
 
     # Model configuration from train_lm.py
     vocab_size = len(tokenizer.vocab)
-    num_layers = 6
+    num_layers = 4
     num_heads = 8
     embedding_dim = 512
     ffn_hidden_dim = 512 * 4
